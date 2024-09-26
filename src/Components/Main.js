@@ -23,10 +23,10 @@ const Main = () => {
         // 두 번째 파노라마 생성
         const panorama2 = new PANOLENS.ImagePanorama('/Second.jpg');
 
-        // 첫 번째 파노라마에 Infospot(고정된 버튼 역할) 생성
-        const infospot = new PANOLENS.Infospot(300, PANOLENS.DataImage.Info);  // Infospot 크기 설정
+        // 첫 번째 파노라마에 Infospot(커스텀 이미지 버튼) 생성
+        const infospot = new PANOLENS.Infospot(1000, '/Icon_2.png');  // 커스텀 이미지 설정
         infospot.position.set(9900, -3000, -1000);  // 좌표 설정
-        infospot.addHoverText('다음 장소로 이동', 30);
+
         infospot.addEventListener('click', () => {
             console.log("Infospot clicked - moving to next panorama");
             viewer.setPanorama(panorama2);
@@ -48,8 +48,8 @@ const Main = () => {
             console.log('Second panorama loaded');
             viewer.tweenControlCenter(new THREE.Vector3(0, 0, 0), 0); // 카메라 위치 설정
         });
-        viewer.add(panorama2);
 
+        viewer.add(panorama2);
 
         // 브라우저 크기에 맞춰 Panolens Viewer를 재조정하는 코드
         const handleResize = () => {
