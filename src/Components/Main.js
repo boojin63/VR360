@@ -48,6 +48,8 @@ const Main = () => {
             console.log('Second panorama loaded');
             viewer.tweenControlCenter(new THREE.Vector3(0, 0, 0), 0); // 카메라 위치 설정
         });
+        viewer.add(panorama2);
+
 
         // 브라우저 크기에 맞춰 Panolens Viewer를 재조정하는 코드
         const handleResize = () => {
