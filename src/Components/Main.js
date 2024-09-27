@@ -14,41 +14,49 @@ const Main = () => {
             container: panoContainerRef.current,
             autoResize: true,
             controlBar: true,
-            cameraFov: 75,  // 시야각 설정
-            backgroundColor: 0x000000  // 배경색 설정
+            cameraFov: 75,
+            backgroundColor: 0x000000
         });
 
         // 첫 번째 파노라마 생성
         const panorama1 = new PANOLENS.ImagePanorama('/First.jpg');
-        // 두 번째 파노라마 생성
         const panorama2 = new PANOLENS.ImagePanorama('/Second.jpg');
 
-        // 첫 번째 파노라마에 Infospot(커스텀 이미지 버튼) 생성
-        const infospot = new PANOLENS.Infospot(1000, '/Icon_2.png');  // 커스텀 이미지 설정
-        infospot.position.set(9900, -3000, -1000);  // 좌표 설정
-
-        infospot.addEventListener('click', () => {
-            console.log("Infospot clicked - moving to next panorama");
-            viewer.setPanorama(panorama2);
-        });
-
-        panorama1.add(infospot);
-
-        // 첫 번째 파노라마를 기본으로 추가
-        viewer.add(panorama1);
-
-        // 첫 번째 파노라마 로드 완료 후 카메라 이동
+        // 첫 번째 파노라마 로드 완료 후 Infospot 추가 및 카메라 이동
         panorama1.addEventListener('load', () => {
             console.log('First panorama loaded');
+
+            // 첫 번째 파노라마에 Infospot(커스텀 이미지 버튼) 생성
+            const infospot1 = new PANOLENS.Infospot(1000, '/Icon.png');  // 커스텀 이미지 설정
+            infospot1.position.set(9900, -3000, -1000);  // 좌표 설정
+
+            infospot1.addEventListener('click', () => {
+                console.log("Infospot clicked - moving to next panorama");
+                viewer.setPanorama(panorama2);  // 두 번째 파노라마로 이동
+            });
+
+            panorama1.add(infospot1);
             viewer.tweenControlCenter(new THREE.Vector3(30, 0, 0), 0);  // 카메라 위치 중앙으로
         });
 
-        // 두 번째 파노라마 로드 확인
+        // 두 번째 파노라마 로드 완료 후 Infospot 추가
         panorama2.addEventListener('load', () => {
             console.log('Second panorama loaded');
+
+            const infospot2 = new PANOLENS.Infospot(1000, '/Icon.png');  // 커스텀 이미지 설정
+            infospot2.position.set(9000, -3000, -1000);  // 두 번째 파노라마에서 Infospot의 좌표 설정
+
+            infospot2.addEventListener('click', () => {
+                console.log("Infospot clicked - moving back to first panorama");
+                viewer.setPanorama(panorama1);  // 첫 번째 파노라마로 돌아감
+            });
+
+            panorama2.add(infospot2);
             viewer.tweenControlCenter(new THREE.Vector3(0, 0, 0), 0); // 카메라 위치 설정
         });
 
+        // 첫 번째 파노라마를 기본으로 추가
+        viewer.add(panorama1);
         viewer.add(panorama2);
 
         // 브라우저 크기에 맞춰 Panolens Viewer를 재조정하는 코드
