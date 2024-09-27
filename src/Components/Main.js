@@ -18,9 +18,10 @@ const Main = () => {
             backgroundColor: 0x000000
         });
 
-        // 첫 번째 파노라마 생성
         const panorama1 = new PANOLENS.ImagePanorama('/First.jpg');
         const panorama2 = new PANOLENS.ImagePanorama('/Second.jpg');
+        const panorama3 = new PANOLENS.ImagePanorama('/Third.jpg');
+        const panorama4 = new PANOLENS.ImagePanorama('/Fourth.jpg');
 
         // 첫 번째 파노라마 로드 완료 후 Infospot 추가 및 카메라 이동
         panorama1.addEventListener('load', () => {
@@ -48,18 +49,50 @@ const Main = () => {
 
             infospot2.addEventListener('click', () => {
                 console.log("Infospot clicked - moving back to first panorama");
-                viewer.setPanorama(panorama1);  // 첫 번째 파노라마로 돌아감
+                viewer.setPanorama(panorama3);  // 첫 번째 파노라마로 돌아감
             });
 
             panorama2.add(infospot2);
             viewer.tweenControlCenter(new THREE.Vector3(0, 0, 0), 0); // 카메라 위치 설정
         });
 
-        // 첫 번째 파노라마를 기본으로 추가
+        panorama3.addEventListener('load', () => {
+            console.log('First panorama loaded');
+
+            
+            const infospot3 = new PANOLENS.Infospot(1000, '/Icon.png');  // 커스텀 이미지 설정
+            infospot3.position.set(9900, -3000, -1000);  // 좌표 설정
+
+            infospot3.addEventListener('click', () => {
+                console.log("Infospot clicked - moving to next panorama");
+                viewer.setPanorama(panorama4);
+            });
+
+            panorama3.add(infospot3);
+            viewer.tweenControlCenter(new THREE.Vector3(0, 0, 0), 0);  // 카메라 위치 중앙으로
+        });
+
+        panorama4.addEventListener('load', () => {
+            console.log('First panorama loaded');
+
+            
+            const infospot4 = new PANOLENS.Infospot(1000, '/Icon.png');  // 커스텀 이미지 설정
+            infospot4.position.set(9900, -3000, -1000);  // 좌표 설정
+
+            infospot4.addEventListener('click', () => {
+                console.log("Infospot clicked - moving to next panorama");
+                viewer.setPanorama(panorama3);
+            });
+
+            panorama4.add(infospot4);
+            viewer.tweenControlCenter(new THREE.Vector3(0, 0, 0), 0);  // 카메라 위치 중앙으로
+        });
+
         viewer.add(panorama1);
         viewer.add(panorama2);
+        viewer.add(panorama3);
+        viewer.add(panorama4);
 
-        // 브라우저 크기에 맞춰 Panolens Viewer를 재조정하는 코드
         const handleResize = () => {
             viewer.onWindowResize();
         };
