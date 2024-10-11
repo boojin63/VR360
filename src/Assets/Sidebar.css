@@ -3,7 +3,7 @@
     position: fixed;
     top: 0;
     left: -200px;
-    background-color: black;
+    background-color: #9DC6E4;
     color: white;
     height: 100%;
     width: 200px;
@@ -17,7 +17,6 @@
 
 .MenuIcon {
     color: white;
-    background-color: black;
     font-size: 24px;
     position: absolute;
     top: 5px;
@@ -28,5 +27,17 @@
 
 .SidebarContainer.open ~ .MenuIcon {
     left: 165px;
+}
+
+.SideBtn1 {
+
+    position: absolute;
+    background-color: #3A4A86;
+    height: 30px;
+    width: 50px;
+    text-align: center;
+    top: 60px;
+    left: 30px;
+    
 }
 

@@ -14,7 +14,7 @@ const Sidebar = () => {
         <div>
             <div className={`SidebarContainer ${toggle ? 'open' : ''}`}>
                 <div className='SidebarContent'>
-                    
+                    <div className="SideBtn1"> 월영교 </div>
                 </div>
             </div>
             <div className='MenuIcon'>

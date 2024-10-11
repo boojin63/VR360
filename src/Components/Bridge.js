@@ -34,19 +34,19 @@ const Bridge = () => {
             new PANOLENS.ImagePanorama('/images/월영교/A14.jpg')  
         ];
 
-        // 각 파노라마에 이벤트 및 Infospot 설정
+        
         panoramas.forEach((panorama, index) => {
             panorama.addEventListener('load', () => {
                 console.log(`Panorama ${index + 1} loaded`);
 
-                // 텍스처가 정의되었는지 확인 후 필터 설정
+                
                 if (panorama && panorama.material && panorama.material.map) {
                     panorama.material.map.minFilter = THREE.LinearFilter;
                     panorama.material.map.magFilter = THREE.LinearFilter;
                     panorama.material.map.needsUpdate = true;
                 }
 
-                // 마지막 파노라마를 제외한 모든 파노라마에 Infospot 추가
+                
                 if (index < panoramas.length - 1) {
                     const infospot = new PANOLENS.Infospot(1000, '/images/NavIcon_ts.png');
                     infospot.position.set(5000, 0, -1500);
@@ -58,13 +58,13 @@ const Bridge = () => {
                     panorama.add(infospot);
                 }
 
-                // 카메라 위치 중앙으로 설정
+                
                 viewer.tweenControlCenter(new THREE.Vector3(0, 0, 0), 0);
             });
             viewer.add(panorama);
         });
 
-        // 첫 번째 파노라마로 초기 설정
+        
         viewer.setPanorama(panoramas[0]);
 
         const handleResize = () => {
@@ -73,7 +73,7 @@ const Bridge = () => {
 
         window.addEventListener('resize', handleResize);
 
-        // 컴포넌트 언마운트 시 이벤트 및 리소스 정리
+        
         return () => {
             viewer.dispose();
             window.removeEventListener('resize', handleResize);
