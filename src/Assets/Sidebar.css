@@ -1,5 +1,15 @@
-.SidebarContainer {
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
+*{
+    font-family:S-CoreDream-3Light ;
+}
+
+.SidebarContainer {
     position: fixed;
     top: 0;
     left: -200px;
@@ -29,30 +39,39 @@
     left: 165px;
 }
 
-.SideBtn1 {
-
+.SidebarContent {
     position: absolute;
-    background-color: #3A4A86;
-    height: 30px;
-    width: 90px;
-    text-align: center;
-    padding-top: 5px;
-    border-radius: 15px;
     top: 60px;
-    left: 40px;
-    cursor: default;
+    left: 20px;
+}
+
+.SideBtn1 {
+    position: relative;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: margin 0.3s ease; 
 }
 
 .SideBtn2 {
-
-    position: absolute;
-    background-color: #5592C7;
-    height: 30px;
-    width: 90px;
-    text-align: center;
-    padding-top: 5px;
-    border-radius: 15px;
-    top: 110px;
-    left: 40px;
-    cursor: default;
+    position: relative;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
+
+.ThemeSubMenu {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.ThemeSubMenu .SideBtn3,
+.ThemeSubMenu .SideBtn4 {
+    color: white;
+    font-size: 1.3rem;
+    text-align: left;
+    margin: 5px 0;
+    padding-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
