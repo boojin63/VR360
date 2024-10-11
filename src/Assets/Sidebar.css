@@ -34,10 +34,25 @@
     position: absolute;
     background-color: #3A4A86;
     height: 30px;
-    width: 50px;
+    width: 90px;
     text-align: center;
+    padding-top: 5px;
+    border-radius: 15px;
     top: 60px;
-    left: 30px;
-    
+    left: 40px;
+    cursor: default;
 }
 
+.SideBtn2 {
+
+    position: absolute;
+    background-color: #5592C7;
+    height: 30px;
+    width: 90px;
+    text-align: center;
+    padding-top: 5px;
+    border-radius: 15px;
+    top: 110px;
+    left: 40px;
+    cursor: default;
+}
